@@ -39,7 +39,7 @@ const shortUrl=`${baseUrl}/${urlCode}`
       await url.save();
       console.log("my Url is ",url.urlData)
       response.status(200).send({message:"Short Url Created successfully", url});
-      response.redirect('https://url-shortner-frontend.netlify.app/display');
+      // response.redirect('https://url-shortner-frontend.netlify.app/display');
     } catch (err) {
       console.log(err);
       response.status(500).json("Server Error");

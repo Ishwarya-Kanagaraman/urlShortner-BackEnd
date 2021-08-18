@@ -9,16 +9,16 @@ import mongoose from "mongoose";
 import cors from "cors";
 import {shortnerRouter} from "./Routes/urlShortener.js";
 import {redirectRouter} from "./Routes/urlRedirect.js";
-import{ userRouter} from "./Routes/Authentication.js";
+import { userRouter} from "./Routes/Authentication.js";
 // const router = require("./Routes/Authentication.js");
-
 
 const app = express();
 const PORT = process.env.PORT || 3004;
 
 // connection to mongodb through mongoose
 // const url=MONGO_URL;
-const url = 'mongodb+srv://ishwarya_23:Kuppu@1614013@cluster0.i7g84.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const url =
+  "mongodb+srv://ishwarya_23:Kuppu@1614013@cluster0.i7g84.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose.connect(`${url}`, { useNewUrlParser: true, useUnifiedTopology: true });
 const con = mongoose.connection;
 con.on("open", () => console.log("MongoDB is connected"));
