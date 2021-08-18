@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(cors());
 
 // used Routes
-app.use("/", redirectRouter);
+app.use("/api/", redirectRouter);
 app.use("/", userRouter);
 app.use("/", shortnerRouter);
 
