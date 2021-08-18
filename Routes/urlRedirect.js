@@ -6,7 +6,7 @@ import {User} from "../models/urlSchema.js";
 
 const router = express.Router();
 
-router.route("/:code").get(async (req, res) => {
+router.route("/view/:code").get(async (req, res) => {
   let code = req.params.code;
   try {
     const url = await User.findOne({

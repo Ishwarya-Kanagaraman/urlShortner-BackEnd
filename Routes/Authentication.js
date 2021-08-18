@@ -110,7 +110,7 @@ router.route("/verify").get(async (request, response) => {
       user.confirm=true;
       await user.save();
       response.send("Your account is activated Successfully!!!!");
-      // response.redirect(`https://main--password-reset-frontend.netlify.app/`);
+      response.redirect(`https://url-shortner-frontend.netlify.app/login`);
     } else {
       response.status(401).json({ message: "Invalid Token" });
     }
@@ -140,7 +140,9 @@ router.route("/login").post(async (request, response) => {
         expires: new Date(new Date().getTime() + 3600 * 1000),
         httpOnly: true,
       });
-      return response.status(200).json({ message: "Logged in Successfully !" });
+      return response.status(200).json({ message: "Logged in Successfully !" })
+      .redirect('https://url-shortner-frontend.netlify.app/shorten');
+      
     } else {
       return response.status(401).send({ message: "Invalid credentials" });
     }
@@ -223,6 +225,8 @@ router.route('/reset-password')
     console.log(err);
   }
 })
-
+// router.route('/home').get(AuthTest,(request,response)=>{
+//    response.send(request.rootUser);
+// })
 export const userRouter=router;
 // module.exports = router;

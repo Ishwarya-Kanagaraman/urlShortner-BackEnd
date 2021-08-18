@@ -15,7 +15,7 @@ const baseUrl = "http://bit.ly/";
 // Url Shortener
 router.route("/shorten")
 .post(async (request, response) => {
-  const { longUrl, id } = request.body;
+  const { longUrl, email } = request.body;
 
   if (!validUrl.isUri(baseUrl)) {
     return response.status(401).json("Invalid base URL");
@@ -27,7 +27,7 @@ const shortUrl=`${baseUrl}/${urlCode}`
   if (validUrl.isUri(longUrl)) {
     try {
       const url = await User.findOne({
-        _id: id,
+        email
       });
       console.log("foundURL" ,url);
       url.urlData.push({
@@ -38,7 +38,8 @@ const shortUrl=`${baseUrl}/${urlCode}`
       });
       await url.save();
       console.log("my Url is ",url.urlData)
-      response.status(200).send({ shortUrl });
+      response.status(200).send({message:"Short Url Created successfully", url});
+      response.redirect('https://url-shortner-frontend.netlify.app/display');
     } catch (err) {
       console.log(err);
       response.status(500).json("Server Error");
